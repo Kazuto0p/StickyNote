@@ -308,3 +308,6 @@ css
     background-color: #de5f5f;
     color: white;
 }
+
+
+ssh-keygen -t ed25519 -C "umamahesh9447230@gmail.com"
