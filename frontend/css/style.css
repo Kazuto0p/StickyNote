@@ -29,11 +29,14 @@
     border: solid black 1px;
     display: flex;
     justify-content: center;
+    flex-direction: column;
     align-items: center;
     padding: 10px;
     overflow: auto;
     word-wrap: break-word;
     cursor: pointer;
+    position: absolute; /* required for dragging */
+    cursor: move;  
 }
 
 .square {
@@ -47,8 +50,8 @@
 }
 
 .circle {
-    width: 160px;
-    height: 160px;
+    width: 200px;
+    height: 200px;
     border-radius: 50%;
 }
 
@@ -59,8 +62,8 @@
 }
 
 .diamond {
-    width: 200px;
-    height: 200px;
+    width: 300px;
+    height: 300px;
     clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
 }
 
@@ -143,6 +146,28 @@
     cursor: pointer;
 }
 
+
+.note-heading,
+.note-desc {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  font-weight: bold;
+  margin-bottom: 5px;
+  resize: none;
+  outline: none;
+  padding: 5px;
+}
+
+.note-heading:disabled,
+.note-desc:disabled {
+  background: transparent;
+}
+
+
+
+
 .popup-overlay {
     position: fixed;
     top: 0;
@@ -190,3 +215,54 @@
     background-color: #de5f5f;
     color: white;
 }
+
+#btn{
+    background-color: #de5f5f;
+    align-self: end;
+}
+
+
+/* Style for buttons inside notes */
+.note-btn {
+    padding: 5px 10px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 12px;
+  }
+  
+  .note-edit {
+    background-color: #de5f5f;
+    color: white;
+  }
+  
+  .note-delete {
+    background-color: #666;
+    color: white;
+  }
+  
+  /* Ensure note-content fits within shapes */
+  .note-content {
+    width: 100%;
+    height: 80%; /* Leave space for buttons */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  
+  /* Adjust note-content for triangle and diamond */
+  .triangle .note-content, .diamond .note-content {
+    width: 70%;
+    height: 60%; /* Adjusted to fit buttons */
+  }
+  
+  /* Ensure text does not overflow */
+  .note-content h4, .note-content p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    max-width: 100%;
+  }

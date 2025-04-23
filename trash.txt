@@ -311,3 +311,108 @@ css
 
 
 ssh-keygen -t ed25519 -C "umamahesh9447230@gmail.com"
+
+
+
+
+----------------------------------------------------------------------------------------------
+
+
+
+const square = document.getElementById("square1");
+const rectangle = document.getElementById("rect1");
+const circle = document.getElementById("circle1");
+const triangle = document.getElementById("triangle1");
+const diamond = document.getElementById("diamond1");
+const sec1 = document.querySelector(".sec1");
+
+function makeNoteDraggable(note) {
+  let currentDraggedNote = null;
+  let offsetX = 0, offsetY = 0;
+
+  note.addEventListener("mousedown", (e) => {
+    if (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA" || e.target.tagName === "BUTTON") return;
+    currentDraggedNote = note;
+    offsetX = e.offsetX;
+    offsetY = e.offsetY;
+    note.style.zIndex = 1000;
+  });
+
+  document.addEventListener("mousemove", (e) => {
+    if (currentDraggedNote) {
+      currentDraggedNote.style.left = e.pageX - offsetX + "px";
+      currentDraggedNote.style.top = e.pageY - offsetY + "px";
+    }
+  });
+
+  document.addEventListener("mouseup", () => {
+    if (currentDraggedNote) {
+      currentDraggedNote.style.zIndex = 1;
+      currentDraggedNote = null;
+    }
+  });
+}
+
+function getRandomColor() {
+  const red = Math.floor(Math.random() * 256);
+  const green = Math.floor(Math.random() * 256);
+  const blue = Math.floor(Math.random() * 256);
+  return `rgb(${red}, ${green}, ${blue})`;
+}
+
+function createNote(className) {
+  const note = document.createElement("div");
+  note.className = className;
+  note.style.backgroundColor = getRandomColor();
+
+  const content = document.createElement("div");
+  content.className = "note-content";
+
+  const heading = document.createElement("input");
+  heading.type = "text";
+  heading.value = "Heading";
+  heading.disabled = true;
+  heading.className = "note-heading";
+
+  const desc = document.createElement("textarea");
+  desc.value = "Description";
+  desc.disabled = true;
+  desc.className = "note-desc";
+
+  content.appendChild(heading);
+  content.appendChild(desc);
+  note.appendChild(content);
+
+  const editBtn = document.createElement("button");
+  editBtn.textContent = "Edit";
+  editBtn.className = "note-btn note-edit";
+  editBtn.addEventListener("click", () => {
+    if (editBtn.textContent === "Edit") {
+      heading.disabled = false;
+      desc.disabled = false;
+      heading.focus();
+      editBtn.textContent = "Save";
+    } else {
+      heading.disabled = true;
+      desc.disabled = true;
+      editBtn.textContent = "Edit";
+    }
+  });
+
+  const deleteBtn = document.createElement("button");
+  deleteBtn.textContent = "❌";
+  deleteBtn.className = "note-btn note-delete";
+  deleteBtn.addEventListener("click", () => sec1.removeChild(note));
+
+  note.appendChild(editBtn);
+  note.appendChild(deleteBtn);
+
+  sec1.appendChild(note);
+  makeNoteDraggable(note);
+}
+
+square.addEventListener("click", () => createNote("square"));
+rectangle.addEventListener("click", () => createNote("rectangle"));
+circle.addEventListener("click", () => createNote("circle"));
+triangle.addEventListener("click", () => createNote("triangle"));
+diamond.addEventListener("click", () => createNote("diamond"));
