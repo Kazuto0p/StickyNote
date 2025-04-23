@@ -1,0 +1,310 @@
+    /* background-color: #4CAF50; */
+
+        background-color: #f44336;
+
+
+index.js
+
+
+let square = document.getElementById("square1");
+let rectangle = document.getElementById("rect1");
+let circle = document.getElementById("circle1");
+let triangle = document.getElementById("triangle1");
+let diamond = document.getElementById("diamond1");
+let sec1 = document.querySelector(".sec1");
+// let sq = document.getElementById('squ')
+
+
+
+
+square.addEventListener("click", () => {
+    console.log("Square clicked");
+    const note = document.createElement("div");
+    note.className = "square";
+    note.id = 'squ';
+    
+    note.addEventListener("click", () => {
+        console.log("Square__ clicked");
+        showPopup(note)
+    });
+
+    sec1.appendChild(note);
+});
+
+
+function showPopup(targetNote) {
+
+    const overlay = document.createElement("div");
+    overlay.className = "popup-overlay";
+
+    // Create popup box
+    const popup = document.createElement("div");
+    popup.className = "popup-box";
+
+    popup.innerHTML = `
+        <h3>Edit Note</h3>
+        <input type="text" placeholder="Enter heading" class="popup-heading"><br>
+        <textarea placeholder="Enter description" class="popup-desc"></textarea><br>
+        <button class="popup-submit">Submit</button>
+        <button class="popup-cancel">Cancel</button>
+    `;
+
+
+    overlay.appendChild(popup);
+    document.body.appendChild(overlay);
+
+
+    popup.querySelector(".popup-submit").addEventListener("click", () => {
+        const heading = popup.querySelector(".popup-heading").value;
+        const desc = popup.querySelector(".popup-desc").value;
+        targetNote.innerHTML = `<h4>${heading}</h4><p>${desc}</p>`;
+        document.body.removeChild(overlay);
+    });
+
+    popup.querySelector(".popup-cancel").addEventListener("click", () => {
+        document.body.removeChild(overlay);
+    });
+}
+
+
+rectangle.addEventListener("click", () => {
+    console.log("Rectangle clicked");
+    const note = document.createElement("div");
+    note.className = "rectangle";
+
+    note.addEventListener("click", () => {
+        console.log("Rectangle__ clicked");
+        showPopup(note)
+    });
+
+    sec1.appendChild(note);
+});
+
+circle.addEventListener("click", () => {
+    console.log("Circle clicked");
+    const note = document.createElement("div");
+    note.className = "circle";
+
+    note.addEventListener("click", () => {
+        console.log("Circle__ clicked");
+        showPopup(note)
+    });
+    sec1.appendChild(note);
+});
+
+triangle.addEventListener("click", () => {
+    console.log("Triangle clicked");
+    const note = document.createElement("div");
+    note.className = "triangle";
+
+    note.addEventListener("click", () => {
+        console.log("Circle__ clicked");
+        showPopup(note)
+    });
+    sec1.appendChild(note);
+});
+
+diamond.addEventListener("click", () => {
+    console.log("Diamond clicked");
+    const note = document.createElement("div");
+    note.className = "diamond";
+
+    note.addEventListener("click", () => {
+        console.log("Diamond__ clicked");
+        showPopup(note)
+    });
+
+    sec1.appendChild(note);
+});
+
+
+
+css
+
+
+.m1 {
+    display: flex;
+}
+
+.sec1 {
+    background-color: rgb(255, 255, 255);
+    border: solid black 1px;
+    width: 100%;
+    height: 100vh;
+    flex-basis: 80%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 10px;
+}
+
+.sec2 {
+    background-color: rgb(255, 255, 255);
+    border: solid black 1px;
+    width: 100%;
+    height: 100vh;
+    flex-basis: 20%;
+    padding-left: 10px;
+}
+
+/* Styles for dynamically created shapes */
+.square, .rectangle, .circle, .triangle, .diamond {
+    background-color: bisque;
+    border: solid black 1px;
+    display: flex; /* Center content */
+    justify-content: center;
+    align-items: center;
+    padding: 10px; /* Keep text away from edges */
+    overflow: auto; /* Scroll if content overflows */
+    word-wrap: break-word; /* Wrap long text */
+    cursor: pointer; /* Indicate clickability */
+}
+
+.square {
+    width: 180px;
+    height: 180px;
+}
+
+.rectangle {
+    width: 300px;
+    height: 150px;
+}
+
+.circle {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+}
+
+.triangle {
+    width: 200px;
+    height: 200px;
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+
+.diamond {
+    width: 200px;
+    height: 200px;
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+}
+
+/* Style content wrapper for triangle and diamond */
+.triangle .note-content, .diamond .note-content {
+    width: 70%; /* Fit within clip-path */
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/* Style text inside shapes */
+.square h4, .rectangle h4, .circle h4, .triangle h4, .diamond h4 {
+    margin: 0;
+    font-size: 14px; /* Smaller font to fit */
+    word-wrap: break-word;
+}
+
+.square p, .rectangle p, .circle p, .triangle p, .diamond p {
+    margin: 5px 0 0;
+    font-size: 12px;
+    word-wrap: break-word;
+    max-height: 100%; /* Prevent overflow */
+}
+
+/* Styles for clickable shape buttons in .sec2 */
+#square1 {
+    background-color: bisque;
+    border: solid black 1px;
+    width: 180px;
+    height: 180px;
+    flex-grow: 3;
+    cursor: pointer;
+}
+
+#rect1 {
+    background-color: bisque;
+    border: solid black 1px;
+    width: 300px;
+    height: 150px;
+    flex-grow: 1;
+    cursor: pointer;
+}
+
+#circle1 {
+    background-color: bisque;
+    border: solid black 1px;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+#triangle1 {
+    background-color: bisque;
+    border: solid black 1px;
+    width: 200px;
+    height: 200px;
+    flex-grow: 2;
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    cursor: pointer;
+}
+
+#diamond1 {
+    background-color: bisque;
+    border: solid black 1px;
+    width: 200px;
+    height: 200px;
+    flex-grow: 2;
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    cursor: pointer;
+}
+
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.popup-box {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.popup-box input,
+.popup-box textarea {
+    width: 100%;
+    margin: 10px 0;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.popup-box button {
+    padding: 8px 12px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.popup-submit {
+    background-color: #de5f5f;
+    color: white;
+}
+
+.popup-cancel {
+    background-color: #de5f5f;
+    color: white;
+}

@@ -1,0 +1,192 @@
+.m1 {
+    display: flex;
+}
+
+.sec1 {
+    background-color: rgb(255, 255, 255);
+    border: solid black 1px;
+    width: 100%;
+    height: 100vh;
+    flex-basis: 80%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 10px;
+}
+
+.sec2 {
+    background-color: rgb(255, 255, 255);
+    border: solid black 1px;
+    width: 100%;
+    height: 100vh;
+    flex-basis: 20%;
+    padding-left: 10px;
+}
+
+/* Styles for dynamically created shapes */
+.square, .rectangle, .circle, .triangle, .diamond {
+    background-color: bisque;
+    border: solid black 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    overflow: auto;
+    word-wrap: break-word;
+    cursor: pointer;
+}
+
+.square {
+    width: 180px;
+    height: 180px;
+}
+
+.rectangle {
+    width: 300px;
+    height: 150px;
+}
+
+.circle {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+}
+
+.triangle {
+    width: 200px;
+    height: 200px;
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+
+.diamond {
+    width: 200px;
+    height: 200px;
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+}
+
+/* Style content wrapper for all shapes */
+.note-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column; /* Stack heading and paragraph vertically */
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/* Adjust note-content for triangle and diamond to fit clip-path */
+.triangle .note-content, .diamond .note-content {
+    width: 70%; /* Fit within clip-path */
+    height: 70%;
+}
+
+/* Style text inside shapes */
+.square h4, .rectangle h4, .circle h4, .triangle h4, .diamond h4 {
+    margin: 0 0 8px 0; /* Space below heading */
+    font-size: 14px;
+    word-wrap: break-word;
+}
+
+.square p, .rectangle p, .circle p, .triangle p, .diamond p {
+    margin: 0;
+    font-size: 12px;
+    word-wrap: break-word;
+    max-height: 100%;
+}
+
+/* Styles for clickable shape buttons in .sec2 */
+#square1 {
+    background-color: bisque;
+    border: solid black 1px;
+    width: 180px;
+    height: 180px;
+    flex-grow: 3;
+    cursor: pointer;
+}
+
+#rect1 {
+    background-color: bisque;
+    border: solid black 1px;
+    width: 300px;
+    height: 150px;
+    flex-grow: 1;
+    cursor: pointer;
+}
+
+#circle1 {
+    background-color: bisque;
+    border: solid black 1px;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+#triangle1 {
+    background-color: bisque;
+    border: solid black 1px;
+    width: 200px;
+    height: 200px;
+    flex-grow: 2;
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    cursor: pointer;
+}
+
+#diamond1 {
+    background-color: bisque;
+    border: solid black 1px;
+    width: 200px;
+    height: 200px;
+    flex-grow: 2;
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    cursor: pointer;
+}
+
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.popup-box {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.popup-box input,
+.popup-box textarea {
+    width: 100%;
+    margin: 10px 0;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.popup-box button {
+    padding: 8px 12px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.popup-submit {
+    background-color: #de5f5f;
+    color: white;
+}
+
+.popup-cancel {
+    background-color: #de5f5f;
+    color: white;
+}

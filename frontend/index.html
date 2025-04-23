@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sticky Notes</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/index.js" defer></script>
+    <style>
+        .navbar {
+            background: #de5f5f;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">Sticky Notes</div>
+    </div>
+    <div class="m1" id="m1">
+        <div class="sec1">
+            <!-- <div class="square"></div> -->
+        </div>
+        <div class="sec2">
+            <br>
+            <div id="square1"></div>
+            <br>
+            <div id="rect1"></div>
+            <br>
+            <div id="circle1"></div>
+            <br>
+            <div id="triangle1"></div>
+            <br>
+            <div id="diamond1"></div>
+            <br>
+        </div>
+    </div>
+</body>
+</html>
